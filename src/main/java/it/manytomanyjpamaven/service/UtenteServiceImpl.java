@@ -263,5 +263,20 @@ public class UtenteServiceImpl implements UtenteService {
 			EntityManagerUtil.closeEntityManager(entityManager);
 		}
 	}
+	
+	public List<Utente> cercaUtentiConPasswordPiccola() throws Exception{
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+		
+		try {
+			utenteDAO.setEntityManager(entityManager);
+			
+			return utenteDAO.findAllUtentiConPasswordLeggera();
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
 
 }

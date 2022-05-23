@@ -78,5 +78,10 @@ public class UtenteDAOImpl implements UtenteDAO {
 		return query.getFirstResult();
 	}
 	
+	public List<Utente> findAllUtentiConPasswordLeggera(){
+		TypedQuery<Utente> query = entityManager.createQuery("from Utente u where u.password NOT LIKE '________%'", Utente.class);
+		return query.getResultList();
+	}
+	
 
 }

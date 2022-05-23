@@ -46,8 +46,10 @@ public class ManyToManyTest {
 			testRimozioneUtente(utenteServiceInstance);
 			
 			testRicercaGiugno(utenteServiceInstance);
-			*/
+			
 			testContatoreAdmin(utenteServiceInstance);
+			*/
+			testCercaUtentiConPasswordPiccola(utenteServiceInstance);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -213,6 +215,12 @@ public class ManyToManyTest {
 		System.out.println("testContatoreAdmin inizializzato.......");
 		System.out.println(utenteServiceInstance.contaQuantiAdmin());
 		System.out.println("testContatoreAdmin inizializzato.......");
+	}
+	
+	private static void testCercaUtentiConPasswordPiccola(UtenteService utenteServiceInstance) throws Exception{
+		System.out.println("testCercaUtentiConPasswordPiccola inizializzato.......");
+		System.out.println(utenteServiceInstance.cercaUtentiConPasswordPiccola());
+		System.out.println("testCercaUtentiConPasswordPiccola inizializzato.......");
 	}
 
 }

@@ -32,4 +32,6 @@ public interface UtenteService {
 	public List<Utente> cercaTuttiNatiAGiugno() throws Exception;
 	
 	public int contaQuantiAdmin() throws Exception;
+	
+	public List<Utente> cercaUtentiConPasswordPiccola() throws Exception;
 }
