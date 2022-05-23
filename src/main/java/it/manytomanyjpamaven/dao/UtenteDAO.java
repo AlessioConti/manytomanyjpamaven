@@ -12,5 +12,6 @@ public interface UtenteDAO extends IBaseDAO<Utente> {
 	public List<Utente> findAllCreatiAGiugno();
 	public int countUtentiAdmin();
 	public List<Utente> findAllUtentiConPasswordLeggera();
+	public List<Utente> findIfPresenteAdminDisabilitato();
 
 }

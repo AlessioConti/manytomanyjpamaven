@@ -34,4 +34,6 @@ public interface UtenteService {
 	public int contaQuantiAdmin() throws Exception;
 	
 	public List<Utente> cercaUtentiConPasswordPiccola() throws Exception;
+	
+	public boolean controllaSeAdminDisabilitato() throws Exception;
 }

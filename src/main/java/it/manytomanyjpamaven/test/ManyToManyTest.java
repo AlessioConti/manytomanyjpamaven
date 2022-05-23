@@ -48,8 +48,10 @@ public class ManyToManyTest {
 			testRicercaGiugno(utenteServiceInstance);
 			
 			testContatoreAdmin(utenteServiceInstance);
-			*/
+			
 			testCercaUtentiConPasswordPiccola(utenteServiceInstance);
+			*/
+			testControllaSeAdminDisabilitato(utenteServiceInstance);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -221,6 +223,15 @@ public class ManyToManyTest {
 		System.out.println("testCercaUtentiConPasswordPiccola inizializzato.......");
 		System.out.println(utenteServiceInstance.cercaUtentiConPasswordPiccola());
 		System.out.println("testCercaUtentiConPasswordPiccola inizializzato.......");
+	}
+	
+	private static void testControllaSeAdminDisabilitato(UtenteService utenteServiceInstance) throws Exception{
+		System.out.println("testControllaSeAdminDisabilitato inizializzato......");
+		if(utenteServiceInstance.controllaSeAdminDisabilitato())
+			System.out.println("Non sono presenti admin disabilitati nel nostro database");
+		else
+			System.out.println("Sono presenti uno o piu' admin disabilitati nel nostro database");
+		System.out.println("testControllaSeAdminDisabilitato concluso......");
 	}
 
 }

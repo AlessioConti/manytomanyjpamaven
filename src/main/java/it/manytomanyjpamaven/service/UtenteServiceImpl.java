@@ -2,6 +2,7 @@ package it.manytomanyjpamaven.service;
 
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 
 import it.manytomanyjpamaven.dao.EntityManagerUtil;
@@ -271,6 +272,23 @@ public class UtenteServiceImpl implements UtenteService {
 			utenteDAO.setEntityManager(entityManager);
 			
 			return utenteDAO.findAllUtentiConPasswordLeggera();
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
+	
+	public boolean controllaSeAdminDisabilitato() throws Exception{
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+		
+		try {
+			utenteDAO.setEntityManager(entityManager);
+			
+			List<Utente> controlloSeAdminDisabilitati = utenteDAO.findIfPresenteAdminDisabilitato();
+			
+			return controlloSeAdminDisabilitati.size() == 0;
 		}catch (Exception e) {
 			e.printStackTrace();
 			throw e;

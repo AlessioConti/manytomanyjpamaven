@@ -83,5 +83,10 @@ public class UtenteDAOImpl implements UtenteDAO {
 		return query.getResultList();
 	}
 	
+	public List<Utente> findIfPresenteAdminDisabilitato(){
+		TypedQuery<Utente> query = entityManager.createQuery("select u from Utente u join u.ruoli r where r.id=1 and u.stato='DISABILITATO'", Utente.class);
+		return query.getResultList();
+	}
+	
 
 }
