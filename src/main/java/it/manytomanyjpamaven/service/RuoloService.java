@@ -20,6 +20,6 @@ public interface RuoloService {
 
 	// per injection
 	public void setRuoloDAO(RuoloDAO ruoloDAO);
-	
+
 	public List<String> cercaDescrizioniConUtenteCollegato() throws Exception;
 }

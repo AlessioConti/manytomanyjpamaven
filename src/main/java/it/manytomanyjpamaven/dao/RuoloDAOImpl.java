@@ -29,9 +29,9 @@ public class RuoloDAOImpl implements RuoloDAO {
 
 	@Override
 	public void update(Ruolo ruoloInstance) throws Exception {
-		if(ruoloInstance == null)
+		if (ruoloInstance == null)
 			throw new Exception("Problema valore in input");
-		
+
 		ruoloInstance = entityManager.merge(ruoloInstance);
 
 	}
@@ -58,14 +58,14 @@ public class RuoloDAOImpl implements RuoloDAO {
 	public Ruolo findByDescrizioneAndCodice(String descrizione, String codice) throws Exception {
 		TypedQuery<Ruolo> query = entityManager
 				.createQuery("select r from Ruolo r where r.descrizione=?1 and r.codice=?2", Ruolo.class)
-				.setParameter(1, descrizione)
-				.setParameter(2, codice);
-		
+				.setParameter(1, descrizione).setParameter(2, codice);
+
 		return query.getResultStream().findFirst().orElse(null);
 	}
-	
-	public List<String> findListDescrizioni() throws Exception{
-		Query query = entityManager.createNativeQuery("select distinct r.descrizione from ruolo r inner join utente_ruolo ur on r.id=ur.ruolo_id INNER JOIN utente u ON ur.utente_id=u.id");
+
+	public List<String> findListDescrizioni() throws Exception {
+		Query query = entityManager.createNativeQuery(
+				"select distinct r.descrizione from ruolo r inner join utente_ruolo ur on r.id=ur.ruolo_id INNER JOIN utente u ON ur.utente_id=u.id");
 		return query.getResultList();
 	}
 

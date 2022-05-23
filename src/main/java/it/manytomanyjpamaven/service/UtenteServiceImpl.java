@@ -122,21 +122,21 @@ public class UtenteServiceImpl implements UtenteService {
 	@Override
 	public void rimuovi(Long idUtente) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
-		
+
 		try {
 			entityManager.getTransaction().begin();
-			
+
 			utenteDAO.setEntityManager(entityManager);
-			
+
 			Utente utenteTemp = utenteDAO.findByIdFetchingRuoli(idUtente);
-			
-			if(!utenteTemp.getRuoli().isEmpty())
+
+			if (!utenteTemp.getRuoli().isEmpty())
 				throw new UtenteConRuoliAssociatiException("L'utente possiede ancora dei ruoli associati");
-			
+
 			utenteDAO.delete(utenteTemp);
-			
+
 			entityManager.getTransaction().commit();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			e.printStackTrace();
 			throw e;
@@ -234,62 +234,62 @@ public class UtenteServiceImpl implements UtenteService {
 		}
 
 	}
-	
-	public List<Utente> cercaTuttiNatiAGiugno() throws Exception{
+
+	public List<Utente> cercaTuttiNatiAGiugno() throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
-		
+
 		try {
 			utenteDAO.setEntityManager(entityManager);
-			
+
 			return utenteDAO.findAllCreatiAGiugno();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
 			EntityManagerUtil.closeEntityManager(entityManager);
 		}
 	}
-	
-	public int contaQuantiAdmin() throws Exception{
+
+	public int contaQuantiAdmin() throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
-		
+
 		try {
 			utenteDAO.setEntityManager(entityManager);
-			
+
 			return utenteDAO.countUtentiAdmin();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
 			EntityManagerUtil.closeEntityManager(entityManager);
 		}
 	}
-	
-	public List<Utente> cercaUtentiConPasswordPiccola() throws Exception{
+
+	public List<Utente> cercaUtentiConPasswordPiccola() throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
-		
+
 		try {
 			utenteDAO.setEntityManager(entityManager);
-			
+
 			return utenteDAO.findAllUtentiConPasswordLeggera();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
 			EntityManagerUtil.closeEntityManager(entityManager);
 		}
 	}
-	
-	public boolean controllaSeAdminDisabilitato() throws Exception{
+
+	public boolean controllaSeAdminDisabilitato() throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
-		
+
 		try {
 			utenteDAO.setEntityManager(entityManager);
-			
+
 			List<Utente> controlloSeAdminDisabilitati = utenteDAO.findIfPresenteAdminDisabilitato();
-			
+
 			return controlloSeAdminDisabilitati.size() == 0;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {

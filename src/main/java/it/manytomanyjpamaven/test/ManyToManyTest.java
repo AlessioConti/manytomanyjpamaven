@@ -22,7 +22,7 @@ public class ManyToManyTest {
 
 			// inizializzo i ruoli sul db
 			initRuoli(ruoloServiceInstance);
-			/*
+
 			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
 
 			testInserisciNuovoUtente(utenteServiceInstance);
@@ -36,23 +36,23 @@ public class ManyToManyTest {
 
 			testRimuoviRuoloDaUtente(ruoloServiceInstance, utenteServiceInstance);
 			System.out.println("In tabella Utente ci sono " + utenteServiceInstance.listAll().size() + " elementi.");
-			
+
 			testCercaTuttiIRuoli(ruoloServiceInstance);
-			
+
 			testAggiornaRuolo(ruoloServiceInstance);
-			
+
 			testRimozioneRuolo(ruoloServiceInstance);
-			
+
 			testRimozioneUtente(utenteServiceInstance);
-			
+
 			testRicercaGiugno(utenteServiceInstance);
-			
+
 			testContatoreAdmin(utenteServiceInstance);
-			
+
 			testCercaUtentiConPasswordPiccola(utenteServiceInstance);
-			
+
 			testControllaSeAdminDisabilitato(utenteServiceInstance);
-			*/
+
 			testTrovaListeDescrizioniConUtentiAssociati(ruoloServiceInstance);
 
 		} catch (Throwable e) {
@@ -158,7 +158,8 @@ public class ManyToManyTest {
 		if (!confermoRuoloPresente)
 			throw new RuntimeException("testRimuoviRuoloDaUtente fallito: utente e ruolo non associati ");
 
-		// ora provo la rimozione vera e propria ma poi forzo il caricamento per fare un confronto 'pulito'
+		// ora provo la rimozione vera e propria ma poi forzo il caricamento per fare un
+		// confronto 'pulito'
 		utenteServiceInstance.rimuoviRuoloDaUtente(utenteReloaded.getId(), ruoloEsistenteSuDb.getId());
 		utenteReloaded = utenteServiceInstance.caricaUtenteSingoloConRuoli(utenteNuovo.getId());
 		if (!utenteReloaded.getRuoli().isEmpty())
@@ -166,80 +167,81 @@ public class ManyToManyTest {
 
 		System.out.println(".......testRimuoviRuoloDaUtente fine: PASSED.............");
 	}
-	
-	private static void testCercaTuttiIRuoli(RuoloService ruoloServiceInstance) throws Exception{
+
+	private static void testCercaTuttiIRuoli(RuoloService ruoloServiceInstance) throws Exception {
 		System.out.println("testCercaTuttiIRuoli inizializzato........");
-		
-		List<Ruolo> tuttiRuoli =ruoloServiceInstance.listAll();
-		for(Ruolo ruoloInput : tuttiRuoli)
+
+		List<Ruolo> tuttiRuoli = ruoloServiceInstance.listAll();
+		for (Ruolo ruoloInput : tuttiRuoli)
 			System.out.println(ruoloInput);
-		
+
 		System.out.println("testCercaTuttiIRuoli concluso........");
-		
+
 	}
-	
-	private static void testAggiornaRuolo(RuoloService ruoloServiceInstance) throws Exception{
+
+	private static void testAggiornaRuolo(RuoloService ruoloServiceInstance) throws Exception {
 		System.out.println("testAggiornaRuolo inizializzato......");
-		
+
 		Ruolo utenteDaCambiare = new Ruolo("Classic User", "ROLE_CLASSIC_USER2");
-		
+
 		ruoloServiceInstance.aggiorna(utenteDaCambiare);
-		
+
 		System.out.println("testAggiornaRuolo concluso.......");
 	}
-	
-	private static void testRimozioneRuolo(RuoloService ruoloServiceInstance) throws Exception{
+
+	private static void testRimozioneRuolo(RuoloService ruoloServiceInstance) throws Exception {
 		System.out.println("testRimozioneRuolo inizializzato.......");
 		Long idDaCancellare = 3L;
-		
+
 		ruoloServiceInstance.rimuovi(idDaCancellare);
-		
+
 		System.out.println("testRimozioneRuolo concluso......");
 	}
-	
-	private static void testRimozioneUtente(UtenteService utenteServiceInstance) throws Exception{
+
+	private static void testRimozioneUtente(UtenteService utenteServiceInstance) throws Exception {
 		System.out.println("testRimozioneUtente inizializzato........");
 		Long idUtenteDaCancellare = 2L;
-		
+
 		utenteServiceInstance.rimuovi(idUtenteDaCancellare);
-		
+
 		System.out.println("testRimozioneUtente concluso........");
 	}
-	
-	private static void testRicercaGiugno(UtenteService utenteServiceInstance) throws Exception{
+
+	private static void testRicercaGiugno(UtenteService utenteServiceInstance) throws Exception {
 		System.out.println("testRicercaGiugno inizializzato......");
 		List<Utente> utentiCreatiGiugno = utenteServiceInstance.cercaTuttiNatiAGiugno();
-		for(Utente utenteInput : utentiCreatiGiugno)
+		for (Utente utenteInput : utentiCreatiGiugno)
 			System.out.println(utenteInput);
-		
+
 		System.out.println("testRicercaGiugno concluso......");
 	}
-	
-	private static void testContatoreAdmin(UtenteService utenteServiceInstance) throws Exception{
+
+	private static void testContatoreAdmin(UtenteService utenteServiceInstance) throws Exception {
 		System.out.println("testContatoreAdmin inizializzato.......");
 		System.out.println(utenteServiceInstance.contaQuantiAdmin());
 		System.out.println("testContatoreAdmin inizializzato.......");
 	}
-	
-	private static void testCercaUtentiConPasswordPiccola(UtenteService utenteServiceInstance) throws Exception{
+
+	private static void testCercaUtentiConPasswordPiccola(UtenteService utenteServiceInstance) throws Exception {
 		System.out.println("testCercaUtentiConPasswordPiccola inizializzato.......");
 		System.out.println(utenteServiceInstance.cercaUtentiConPasswordPiccola());
 		System.out.println("testCercaUtentiConPasswordPiccola inizializzato.......");
 	}
-	
-	private static void testControllaSeAdminDisabilitato(UtenteService utenteServiceInstance) throws Exception{
+
+	private static void testControllaSeAdminDisabilitato(UtenteService utenteServiceInstance) throws Exception {
 		System.out.println("testControllaSeAdminDisabilitato inizializzato......");
-		if(utenteServiceInstance.controllaSeAdminDisabilitato())
+		if (utenteServiceInstance.controllaSeAdminDisabilitato())
 			System.out.println("Non sono presenti admin disabilitati nel nostro database");
 		else
 			System.out.println("Sono presenti uno o piu' admin disabilitati nel nostro database");
 		System.out.println("testControllaSeAdminDisabilitato concluso......");
 	}
-	
-	private static void testTrovaListeDescrizioniConUtentiAssociati(RuoloService ruoloServiceInstance) throws Exception{
+
+	private static void testTrovaListeDescrizioniConUtentiAssociati(RuoloService ruoloServiceInstance)
+			throws Exception {
 		System.out.println("testTrovaListeDescrizioniConUtentiAssociati inizializzato........");
 		List<String> listaDescrizioni = ruoloServiceInstance.cercaDescrizioniConUtenteCollegato();
-		for(String stringInput : listaDescrizioni)
+		for (String stringInput : listaDescrizioni)
 			System.out.println(stringInput);
 		System.out.println("testTrovaListeDescrizioniConUtentiAssociati concluso........");
 	}

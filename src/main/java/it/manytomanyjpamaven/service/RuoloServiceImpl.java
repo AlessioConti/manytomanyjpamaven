@@ -14,14 +14,14 @@ public class RuoloServiceImpl implements RuoloService {
 
 	@Override
 	public List<Ruolo> listAll() throws Exception {
-		
+
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
-		
+
 		try {
 			ruoloDAO.setEntityManager(entityManager);
-			
+
 			return ruoloDAO.list();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
@@ -52,16 +52,16 @@ public class RuoloServiceImpl implements RuoloService {
 	@Override
 	public void aggiorna(Ruolo ruoloInstance) throws Exception {
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
-		
+
 		try {
 			entityManager.getTransaction().begin();
-			
+
 			ruoloDAO.setEntityManager(entityManager);
-			
+
 			ruoloDAO.update(ruoloInstance);
-			
+
 			entityManager.getTransaction().commit();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			e.printStackTrace();
 			throw e;
@@ -99,13 +99,13 @@ public class RuoloServiceImpl implements RuoloService {
 
 		try {
 			entityManager.getTransaction().begin();
-			
+
 			ruoloDAO.setEntityManager(entityManager);
-			
+
 			ruoloDAO.delete(ruoloDAO.get(idRuoloToRemove));
-			
+
 			entityManager.getTransaction().commit();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			e.printStackTrace();
 			throw e;
@@ -137,16 +137,16 @@ public class RuoloServiceImpl implements RuoloService {
 			EntityManagerUtil.closeEntityManager(entityManager);
 		}
 	}
-	
-	public List<String> cercaDescrizioniConUtenteCollegato() throws Exception{
-		
+
+	public List<String> cercaDescrizioniConUtenteCollegato() throws Exception {
+
 		EntityManager entityManager = EntityManagerUtil.getEntityManager();
-		
+
 		try {
 			ruoloDAO.setEntityManager(entityManager);
-			
+
 			return ruoloDAO.findListDescrizioni();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		} finally {
