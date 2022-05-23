@@ -137,5 +137,21 @@ public class RuoloServiceImpl implements RuoloService {
 			EntityManagerUtil.closeEntityManager(entityManager);
 		}
 	}
+	
+	public List<String> cercaDescrizioniConUtenteCollegato() throws Exception{
+		
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+		
+		try {
+			ruoloDAO.setEntityManager(entityManager);
+			
+			return ruoloDAO.findListDescrizioni();
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
 
 }

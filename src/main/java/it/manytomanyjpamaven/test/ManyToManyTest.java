@@ -50,8 +50,10 @@ public class ManyToManyTest {
 			testContatoreAdmin(utenteServiceInstance);
 			
 			testCercaUtentiConPasswordPiccola(utenteServiceInstance);
-			*/
+			
 			testControllaSeAdminDisabilitato(utenteServiceInstance);
+			*/
+			testTrovaListeDescrizioniConUtentiAssociati(ruoloServiceInstance);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -232,6 +234,14 @@ public class ManyToManyTest {
 		else
 			System.out.println("Sono presenti uno o piu' admin disabilitati nel nostro database");
 		System.out.println("testControllaSeAdminDisabilitato concluso......");
+	}
+	
+	private static void testTrovaListeDescrizioniConUtentiAssociati(RuoloService ruoloServiceInstance) throws Exception{
+		System.out.println("testTrovaListeDescrizioniConUtentiAssociati inizializzato........");
+		List<String> listaDescrizioni = ruoloServiceInstance.cercaDescrizioniConUtenteCollegato();
+		for(String stringInput : listaDescrizioni)
+			System.out.println(stringInput);
+		System.out.println("testTrovaListeDescrizioniConUtentiAssociati concluso........");
 	}
 
 }
