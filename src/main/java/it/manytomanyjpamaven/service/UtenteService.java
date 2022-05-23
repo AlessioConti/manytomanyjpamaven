@@ -30,5 +30,6 @@ public interface UtenteService {
 	public void setRuoloDAO(RuoloDAO ruoloDAO);
 	
 	public List<Utente> cercaTuttiNatiAGiugno() throws Exception;
-
+	
+	public int contaQuantiAdmin() throws Exception;
 }

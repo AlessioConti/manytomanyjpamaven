@@ -248,5 +248,20 @@ public class UtenteServiceImpl implements UtenteService {
 			EntityManagerUtil.closeEntityManager(entityManager);
 		}
 	}
+	
+	public int contaQuantiAdmin() throws Exception{
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+		
+		try {
+			utenteDAO.setEntityManager(entityManager);
+			
+			return utenteDAO.countUtentiAdmin();
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
 
 }

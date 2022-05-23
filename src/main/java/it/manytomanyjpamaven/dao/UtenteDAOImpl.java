@@ -73,5 +73,10 @@ public class UtenteDAOImpl implements UtenteDAO {
 		return query.getResultList();
 	}
 	
+	public int countUtentiAdmin() {
+		TypedQuery<Long> query = entityManager.createQuery("select count(u) from Utente u join u.ruoli r where r.id=1", Long.class);
+		return query.getFirstResult();
+	}
+	
 
 }
