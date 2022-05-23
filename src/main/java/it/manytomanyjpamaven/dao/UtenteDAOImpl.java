@@ -68,5 +68,10 @@ public class UtenteDAOImpl implements UtenteDAO {
 		return query.getResultList().stream().findFirst().orElse(null);
 	}
 	
+	public List<Utente> findAllCreatiAGiugno(){
+		TypedQuery<Utente> query = entityManager.createQuery("from Utente where dateCreated > '2021-06-01' and dateCreated < '2021-07-01'", Utente.class);
+		return query.getResultList();
+	}
+	
 
 }

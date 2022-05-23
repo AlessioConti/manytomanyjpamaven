@@ -42,8 +42,10 @@ public class ManyToManyTest {
 			testAggiornaRuolo(ruoloServiceInstance);
 			
 			testRimozioneRuolo(ruoloServiceInstance);
-			*/
+			
 			testRimozioneUtente(utenteServiceInstance);
+			*/
+			testRicercaGiugno(utenteServiceInstance);
 
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -194,6 +196,15 @@ public class ManyToManyTest {
 		utenteServiceInstance.rimuovi(idUtenteDaCancellare);
 		
 		System.out.println("testRimozioneUtente concluso........");
+	}
+	
+	public static void testRicercaGiugno(UtenteService utenteService) throws Exception{
+		System.out.println("testRicercaGiugno inizializzato......");
+		List<Utente> utentiCreatiGiugno = utenteService.cercaTuttiNatiAGiugno();
+		for(Utente utenteInput : utentiCreatiGiugno)
+			System.out.println(utenteInput);
+		
+		System.out.println("testRicercaGiugno concluso......");
 	}
 
 }

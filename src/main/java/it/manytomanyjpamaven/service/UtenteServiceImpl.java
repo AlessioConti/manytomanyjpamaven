@@ -233,5 +233,20 @@ public class UtenteServiceImpl implements UtenteService {
 		}
 
 	}
+	
+	public List<Utente> cercaTuttiNatiAGiugno() throws Exception{
+		EntityManager entityManager = EntityManagerUtil.getEntityManager();
+		
+		try {
+			utenteDAO.setEntityManager(entityManager);
+			
+			return utenteDAO.findAllCreatiAGiugno();
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			EntityManagerUtil.closeEntityManager(entityManager);
+		}
+	}
 
 }
